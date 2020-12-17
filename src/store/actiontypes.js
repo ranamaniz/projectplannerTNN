@@ -1,0 +1,5 @@
+export const ACTIONS={
+    CREATE_PROJECT:'CREATE_PROJECT',
+}
+
+export const CREATE_PROJECT='CREATE_PROJECT';
