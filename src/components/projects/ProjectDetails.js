@@ -2,12 +2,19 @@ import React from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
+import {Redirect} from 'react-router-dom';
+
 
 const ProjectDetails = (props) => {
   console.log(props);
-  const { project } = props;
+  const { project, auth } = props;
   const id = props.match.params.id;
   console.log(id);
+
+
+  if(!auth.uid){
+      return <Redirect to="/signIn"></Redirect>            
+  }
 
   if (project) {
     return (
@@ -42,6 +49,7 @@ const mapStateToProps = (state, ownProps) => {
   const project = projects ? projects[id] : null;
   return {
     project: project,
+    auth:state.firebase.auth,
   };
 };
 
